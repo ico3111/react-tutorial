@@ -1,27 +1,23 @@
-import { useCallback, useState } from "react";
+// src/CaixaTexto.jsx
+import { useState } from 'react'
 
 const CaixaTexto = () => {
-  const [texto, setTexto] = useState("");
+    const [texto, setTexto] = useState('')
 
-  const handleTexto = useCallback(
-    (textoInput) => {
-      setTexto(textoInput);
-    },
-    [texto]
-  );
+    const gerenciaTexto = (event) => {
+        setTexto(event.target.value)
+    }
 
-  return (
-    <div>
-      <h3>input</h3>
-      <input
-        type="text"
-        onChange={(e) => {
-          handleTexto(e.target.value);
-        }}
-      />
-      <p>Voce digitou: {texto}</p>
-    </div>
-  );
-};
+    return (
+        <div>
+            <h3>Input</h3>
 
-export default CaixaTexto;
+            <input type="text" value={texto} onInput={gerenciaTexto} />
+
+            <p>Você digitou: {texto}</p>
+        </div>
+    )
+
+}
+
+export default CaixaTexto

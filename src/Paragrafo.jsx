@@ -1,39 +1,26 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from 'react'
 
 const Paragrafo = (props) => {
-  const [num, setNum] = useState(2);
+    const [pontos, setPontos] = useState(0)
 
-  useEffect(() => {
-    setNum(5);
-  }, []);
+    const aumentarPontos = () => {
+        setPontos(pontos + 1)
+    }
 
-  const handleButton = useCallback((aumentar = true) => {
-    aumentar
-      ? setNum((prevNum) => prevNum + 1)
-      : setNum((prevNum) => prevNum - 1);
-  }, []);
+    const diminuirPontos = () => {
+        if (pontos > 0) setPontos(pontos - 1)
+    }
 
-  return (
-    <>
-      <p>
-        {props.nome} tem {num}
-      </p>
-      <button
-        onClick={() => {
-          handleButton();
-        }}
-      >
-        +
-      </button>
-      <button
-        onClick={() => {
-          handleButton(false);
-        }}
-      >
-        -
-      </button>
-    </>
-  );
-};
+    return (
+        <div>
+            <p>Olá! Seja bem-vindo {props.nome}.</p>
+            <p>
+                {props.nome} tem {pontos} pontos.
+                <button onClick={aumentarPontos}>+</button>
+                <button onClick={diminuirPontos}>-</button>
+            </p>
+        </div>
+    )
+}
 
-export default Paragrafo;
+export default Paragrafo
